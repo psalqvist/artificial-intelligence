@@ -1,0 +1,7 @@
+/Lectures
+.vscode/
+*.pages
+*.DS_Store
+*.pyc
+*.pyo
+*.pdf
