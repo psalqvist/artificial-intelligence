@@ -1,0 +1,23 @@
+Theory
+
+1.2 - Select random action from allowed actions uniformly, finally select the action that has been randomly selected most as policy
+
+2.1 - Use bellman equation to update Q-values through Q-iteration with learning-rate alpha=0.1 and discount factor gamma=0.1. 
+    - Alpha too close to 1 will create high variance, and thus instability in algorithm.
+    - Alpha too close to 0 -> we'll learn slow
+    - We also want a gamma less than 1. If gamma is 1, we get an infinite sum and will never converge.
+    - Also, if alpha is 1, we care as much for future reward as immediate reward, which doesn't make sense.
+
+2.3 - Quit iterating when mean difference between past Q and present Q becomes less than a threshold of 1e^-6.
+
+3.1 - epsilon greedy algorithm performs action based on Q-values (maximizes reward) with probability 1-epsilon, and picks random action with probability epsilon -> More exploration when sometimes picking random action
+
+3.2 - We want to explore more initially and decay the exploration when informed desisions become better. We do this through annealing epsilon. 
+    - When t grows, our epsilon becomes smaller and smaller. Large epsilon means more eploration (more random actions) and small epsilon means more informed actions (through Q-values).
+
+4.1 - 1. A very small alpha such as 0.00001 will create a scenario where the algorithm doesn't learn/improve.
+    - 2. A large alpha such as 0.9 will create large variance (not smooth convergence), however we converge already after approx. 4000 steps
+    - 3. A small alpha=0.01 and large gamma=0.9 creates low variance (smooth convergence) and makes the algorithm favor long term reward nearly as highly as short term
+    - 4. A large alpha=0.9 and large gamma=0.9 creates high variance and favors long term reward highly
+
+ 
