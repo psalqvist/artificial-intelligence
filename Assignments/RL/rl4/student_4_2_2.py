@@ -3,12 +3,16 @@
 rewards = [-10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10]
 
 # Q learning learning rate
-alpha = 0
+#If alpha > 0.4, too much variance, doesn't converge. If alpha < 0.1, we learn too slow.
+# we set alpha=0.4 so that we learn fast but still converge
+alpha = 0.4
 
 # Q learning discount rate
-gamma = 0
+# finds solution with gamma 0.2-1.0. If gamma < 0.2, we don't value future reward high enough compared to present reward.
+gamma = 0.8
 
 # Epsilon initial
+# varying epsilon doesn't seem to effect learning much in this scenario
 epsilon_initial = 1
 
 # Epsilon final

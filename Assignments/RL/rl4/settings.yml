@@ -1,5 +1,13 @@
+#!/usr/bin/env python3
 # rewards: [golden_fish, jellyfish_1, jellyfish_2, ... , step]
-rewards: [20, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -1]
+
+# rewards: [golden_fish, jellyfish_1, jellyfish_2, ... , step]
+# 2
+# rewards: [-10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10]
+# 1
+# rewards: [10, -10, -10, 10, -10, 10, -10, 10, -10, 10, -10, 10, -10]
+# 3
+rewards: [50, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -2]
 
 ## Initial position of the diver. Default: [1, 8]
 init_pos_diver: [1, 8]
@@ -11,20 +19,23 @@ frames_per_second: 10000
 # player_type: "random"
 player_type: "ai_rl"
 
-## Q learning learning rate
-alpha: 0.1
+## Q learning learning rate, works with alpha 0.1-0.4.
+#If alpha > 0.4, too much variance, doesn't converge. If alpha < 0.1, we learn too slow.
+# we set alpha=0.4 so that we learn fast but still converge
+alpha: 0.4
 
 ## Q learning discount rate
-gamma: 0.1
+# finds solution with gamma 0.2-1.0. If gamma < 0.2, we don't value future reward high enough compared to present reward.
+gamma: 0.9
 
 # Disables the graphical engine of the simulator (true by default)
-headless: true
+headless: false
 
 ## Epsilon initial
 epsilon_initial: 1
 
 ## Epsilon final
-epsilon_final: 1
+epsilon_final: 0.2
 
 ## Annealing timesteps
 annealing_timesteps: 1000
@@ -35,6 +46,7 @@ threshold: 1e-6
 # Position of the jellyfishes
 jelly_x: [3, 3, 4, 4, 4, 4, 5, 5, 8, 7, 8]
 jelly_y: [4, 5, 8, 8, 7, 5, 8, 8, 8, 5, 4]
+
 
 # Position of the king fish
 pos_king: [8, 5]

@@ -1,5 +1,8 @@
 Theory
 
+1.1 - S represented by grid world with coordinates (i,j) where 0<=i<=10 and 0<=j<=10
+    - Action space A = ["left", "right", "down", "up", ]
+
 1.2 - Select random action from allowed actions uniformly, finally select the action that has been randomly selected most as policy
 
 2.1 - Use bellman equation to update Q-values through Q-iteration with learning-rate alpha=0.1 and discount factor gamma=0.1. 
@@ -12,12 +15,16 @@ Theory
 
 3.1 - epsilon greedy algorithm performs action based on Q-values (maximizes reward) with probability 1-epsilon, and picks random action with probability epsilon -> More exploration when sometimes picking random action
 
-3.2 - We want to explore more initially and decay the exploration when informed desisions become better. We do this through annealing epsilon. 
-    - When t grows, our epsilon becomes smaller and smaller. Large epsilon means more eploration (more random actions) and small epsilon means more informed actions (through Q-values).
+3.2 - We want to explore more initially and decay the exploration when informed decisions become better. We do this through annealing epsilon. 
+    - When t grows, our epsilon becomes smaller and smaller. Large epsilon means more exploration (more random actions) and small epsilon means more informed actions (through Q-values).
 
 4.1 - 1. A very small alpha such as 0.00001 will create a scenario where the algorithm doesn't learn/improve.
     - 2. A large alpha such as 0.9 will create large variance (not smooth convergence), however we converge already after approx. 4000 steps
     - 3. A small alpha=0.01 and large gamma=0.9 creates low variance (smooth convergence) and makes the algorithm favor long term reward nearly as highly as short term
     - 4. A large alpha=0.9 and large gamma=0.9 creates high variance and favors long term reward highly
 
- 
+
+
+4.2 - The optimal policy long term reward is 32. 10 steps in total to reach the king fish. 9 steps without reaching it -> 9*-2=-18 and +50 reward for the king fish so -> 50-18=32.
+    1. A small alpha creates a scenario where we don't learn, and thus the diver doesn't learn to get the fishes that give high reward but rather only steps in the same place without 	catching fishes.
+    2. Finds king fish in 10 steps when alpha 0.1-0.4, if alpha is too high we don't converge due to too much variance. If it's too small we don't learn fast enough. Interval of gamma is 0.2-1.0, if 0.1 we don't value future reward high enough.
