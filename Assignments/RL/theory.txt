@@ -1,6 +1,6 @@
 Theory
 
-1.1 - S represented by grid world with coordinates (i,j) where 0<=i<=10 and 0<=j<=10
+1.1 - S represented by a grid world with coordinates (i,j) where 0<=i<=10 and 0<=j<=10
     - Action space A = ["left", "right", "down", "up", ]
 
 1.2 - Select random action from allowed actions uniformly, finally select the action that has been randomly selected most as policy
@@ -9,7 +9,7 @@ Theory
     - Alpha too close to 1 will create high variance, and thus instability in algorithm.
     - Alpha too close to 0 -> we'll learn slow
     - We also want a gamma less than 1. If gamma is 1, we get an infinite sum and will never converge.
-    - Also, if alpha is 1, we care as much for future reward as immediate reward, which doesn't make sense.
+    - Also, if alpha is 1, we care as much for future reward as immediate reward.
 
 2.3 - Quit iterating when mean difference between past Q and present Q becomes less than a threshold of 1e^-6.
 

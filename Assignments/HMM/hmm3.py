@@ -187,7 +187,7 @@ class HMM():
             gamma, di_gamma = self.gamma(alpha, beta)
             self.estimate(gamma, di_gamma)
 
-            # ensure that P(O|lamda) is increasing each iteration
+            # ensure that log(P(O|lamda)) is increasing each iteration
             log_prob = self.log_prob(scale)
             if log_prob > old_log_prob:
                 old_log_prob = log_prob

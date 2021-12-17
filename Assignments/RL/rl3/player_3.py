@@ -102,7 +102,7 @@ def epsilon_greedy(Q,
         # Use epsilon and all input arguments of epsilon_greedy you see fit
         # It is recommended you use the np.random module
         rand = np.random.uniform(0,1)
-        if rand > epsilon:
+        if rand < epsilon:
             action = np.random.choice(all_actions)
         else:
             action = np.nanargmax(Q[state])

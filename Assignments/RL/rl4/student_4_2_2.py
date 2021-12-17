@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # rewards: [golden_fish, jellyfish_1, jellyfish_2, ... , step]
-rewards = [-10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10]
+rewards = [50, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -10, -1]
 
 # Q learning learning rate
 #If alpha > 0.4, too much variance, doesn't converge. If alpha < 0.1, we learn too slow.

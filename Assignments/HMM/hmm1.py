@@ -57,7 +57,7 @@ class HMM():
         for i in range(N):
             alpha[0][i] = self.pi[0][i]*self.B[i][self.O[0]]
 
-        # compute remaining alpha recursively
+        # compute remaining alpha using DP approach
         for t in range(1, T):
             for i in range(N):
                 for j in range(N):

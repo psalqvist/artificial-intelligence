@@ -46,7 +46,7 @@ class HMM():
         return res
 
     """
-    Finds the hidden states in time steps 1:T given observation sequence O and model lambda
+    Finds the hidden states in time steps 1:T given observation sequence O in 1:T and model lambda
     """
     def viterbi(self):
         T = len(self.O)
