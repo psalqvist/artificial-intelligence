@@ -1,0 +1,97 @@
+%%  aquarium(-Solution)
+%   @param  Solution is a list of fish that satisfy all constraints.
+%   Your task is to complete the facts
+
+/* Four fish logical puzzle: 
+* 
+* The constants:
+* Name: betty, guppy, puttsy, starry
+* Color: blue, gold, red, silver
+* Feature: shiny, spotted, striped
+* Hideout: log, seaweed, rock
+* Treat: flakes, strawberries, worms
+
+* 
+* We define that:
+*  Two fish are buddies if they prefer the same hideout.
+* 
+* And we know the following facts:
+*  F1- betty is red.
+*  F2- puttsy has spots.
+*  F3- starry enjoys flakes.
+*  F4- the golden fish is shiny.
+*  F5- the silver fish lives in the seaweed.
+*  F6- the blue fish is shiny and lives at the rock.
+*  F7- guppy and puttsy are buddies.
+*  F8- two fish both enjoy flakes.
+*  F9- starry and a fish who likes strawberries share the same feature.
+*  F10- a fish is striped and enjoys worms, but it's not guppy.
+*/
+
+% Render the information as a nice table.
+:- use_rendering(table,[header(p('Name', 'Color', 'Feature', 'Hideout', 'Treat'))]).
+
+
+% Two fish are buddies if the use the same hideout.
+buddies(F1, F2, Ls) :-			
+    member(p(F1, _, _, H1, _),Ls),
+    member(p(F2, _, _, H2, _),Ls),
+    not(F1 == F2),
+    H1 = H2.
+
+
+% The facts:
+fact1(Ls) :-
+    member(p(betty, red, _, _, _), Ls).
+fact2(Ls) :-
+    member(p(puttsy, _, spotted, _, _), Ls).
+fact3(Ls) :-
+    member(p(starry, _, _, _, flakes), Ls).
+fact4(Ls) :-
+    member(p(_, gold, shiny, _, _), Ls).
+fact5(Ls) :-
+    member(p(_, silver, _, seaweed, _), Ls).
+fact6(Ls) :-
+    member(p(_, blue, shiny, rock, _), Ls).
+fact7(Ls) :-
+	buddies(guppy, puttsy, Ls).
+fact8(Ls) :-
+    member(p(F1, _, _, _, flakes), Ls),
+    member(p(F2, _, _, _, flakes), Ls),
+    not(F1 == F2).
+fact9(Ls) :-
+    member(p(starry, _, FT1, _, _), Ls),
+    member(p(_, _, FT2, _, strawberries), Ls),
+    FT1 = FT2.
+fact10(Ls) :-
+    member(p(F1, _, striped, _, worms), Ls),
+    F1 \== guppy.
+
+% Problem:
+aquarium(Ls) :-
+    % There are four fish in our list Ls
+    length(Ls, 4),
+    % One of them is betty, one is guppy, one is puttsy, and one is starry
+    member(p(betty,_,_,_,_), Ls), member(p(guppy,_,_,_,_), Ls), member(p(puttsy,_,_,_,_), Ls), member(p(starry,_,_,_,_), Ls),
+    % One of them is blue, one is gold, one is red, and one is silver
+    member(p(_,blue,_,_,_), Ls), member(p(_,gold,_,_,_), Ls), member(p(_,red,_, _,_), Ls), member(p(_,silver,_, _,_), Ls), 
+    % Some are shiny, some are spotted, and some are striped
+    member(p(_,_,shiny,_,_), Ls), member(p(_,_,spotted, _,_), Ls), member(p(_,_,striped, _,_), Ls),
+    % Some stay at a log, some stay at a rock, and some stay between seaweed
+    member(p(_,_,_, log,_), Ls), member(p(_,_,_, rock,_), Ls), member(p(_,_,_, seaweed,_), Ls),
+    % Some likes flakes, some likes strawberries, and some likes worms
+    member(p(_,_,_, _,flakes), Ls), member(p(_,_,_, _,strawberries), Ls), member(p(_,_,_, _,worms), Ls),
+    fact1(Ls),
+    fact2(Ls),
+    fact3(Ls),
+    fact4(Ls),
+    fact5(Ls),
+    fact6(Ls),
+    fact7(Ls),
+    fact8(Ls),
+    fact9(Ls),
+    fact10(Ls),
+    !.
+ 
+%To see the results, run ?- aquarium(Ls).
+
